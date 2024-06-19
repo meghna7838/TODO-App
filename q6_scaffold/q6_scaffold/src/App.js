@@ -14,20 +14,24 @@ export default class App extends Component {
       ]
     };
   }
-  handleAdd = () => {
-    // complete the function to add a new Todo to the list
+
+  handleAdd = (text) => {
+    this.setState((prev) => ({
+      todos: [{ text }, ...prev.todos]
+    }));
   };
 
-  handleRemove = () => {
-    // complete the function to remove the Todo from the list
+  handleRemove = (text) => {
+    const filteredTodos = this.state.todos.filter((todo) => todo.text !== text);
+    this.setState({ todos: filteredTodos });
   };
+
   render() {
     return (
       <div className="App">
         <span>Todo</span>
-        {/* Pass the todos list and function as props to utilize those in the component for adding and removing */}
-        <Form />
-        <List />
+        <Form onAdd={this.handleAdd} />
+        <List todos={this.state.todos} onRemove={this.handleRemove} />
       </div>
     );
   }

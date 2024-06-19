@@ -5,7 +5,9 @@ export class List extends Component {
   render() {
     return (
       <div className="list">
-        {/* Render the todo here from the props*/}
+        {this.props.todos.map((todo, i) => (
+          <Todo key={i} todo={todo} onRemove={this.props.onRemove} />
+        ))}
       </div>
     );
   }

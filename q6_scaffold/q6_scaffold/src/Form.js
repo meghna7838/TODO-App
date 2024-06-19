@@ -8,6 +8,7 @@ export class Form extends Component {
     };
   }
 
+ 
   handleChange = (e) => {
     this.setState({
       text: e.target.value
@@ -15,6 +16,8 @@ export class Form extends Component {
   };
 
   render() {
+  let {todos,onAdd} = this.props;
+
     return (
       <div className="form">
         <input
@@ -24,7 +27,7 @@ export class Form extends Component {
           required
         />
         {/* Add onclick event on the button to add the todos */}
-        <button>Add</button>
+        <button onClick={()=>{onAdd(input.value)}}>Add</button>
       </div>
     );
   }
